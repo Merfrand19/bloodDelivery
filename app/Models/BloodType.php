@@ -9,4 +9,10 @@ class BloodType extends Model
 {
     use HasFactory;
     protected $fillable = ['type'];
+
+    public function bloodInventory()
+    {
+        return $this->hasMany(BloodInventory::class, 'blood_type_id');
+    } 
+
 }

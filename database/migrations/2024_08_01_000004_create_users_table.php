@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('phone_number');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('isEnable')->default(true);
+            $table->unsignedBigInteger('hospital_id');
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -29,9 +34,9 @@ return new class extends Migration
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
+            $table->foreignId('hospital_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
-            $table->text('user_agent')->nullable();
+            $table->text('hospital_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
