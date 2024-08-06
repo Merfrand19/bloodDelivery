@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\HospitalController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\BloodInventoryController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -13,8 +14,15 @@ Route::post('/login', [AuthController::class, 'login']);
 // Route::put('/hospitals/{hospital}', [HospitalController::class, 'update']);
 // Route::delete('/hospitals/{hospital}', [HospitalController::class, 'destroy']);
 
-Route::apiResource('hospitals', HospitalController::class);
+
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    //Hospital
+    Route::apiResource('hospitals', HospitalController::class);
+
+    //BloodInventory
+    Route::apiResource('blood_inventories', BloodInventoryController::class);
+    
 });
