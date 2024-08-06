@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\HospitalController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BloodInventoryController;
+use App\Http\Controllers\API\TransactionController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -24,5 +25,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //BloodInventory
     Route::apiResource('blood_inventories', BloodInventoryController::class);
+
+    //Transactions
+    Route::apiResource('transactions', TransactionController::class);
     
 });

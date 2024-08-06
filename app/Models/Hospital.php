@@ -42,4 +42,14 @@ class Hospital extends Model
     {
         return $this->hasMany(BloodInventory::class, 'hospital_id');
     } 
+
+    public function sentTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'sender_id');
+    }
+
+    public function receivedTransactions()
+    {
+        return $this->belongsTo(Transaction::class, 'receiver_id');
+    }
 }
