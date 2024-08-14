@@ -20,7 +20,7 @@ class Hospital extends Model
     ];
 
     protected $hidden = [
-        'departement_id','type_id'
+        'departement_id','type_id', 'created_at', 'updated_at',
     ];
 
     public function departement()

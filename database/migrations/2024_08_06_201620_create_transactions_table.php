@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sender_id');
+            $table->unsignedBigInteger('sender_id')->nullable();
             $table->unsignedBigInteger('receiver_id');
             $table->date('transaction_date');
-            $table->time('sending_time')->nullable();;
+            $table->time('sending_time')->nullable();
             $table->time('reception_time')->nullable();
+            $table->text('receiver_comments')->nullable();
+            $table->text('sender_comments')->nullable();
             $table->string('status')->default("en attente");
             $table->timestamps();
-
+            
             $table->foreign('sender_id')->references('id')->on('hospitals')->onDelete('cascade');
             $table->foreign('receiver_id')->references('id')->on('hospitals')->onDelete('cascade');
         });

@@ -23,15 +23,18 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'sender_id' => 'required|exists:hospitals,id',
+            'sender_id' => 'exists:hospitals,id',
             'receiver_id' => 'required|exists:hospitals,id',
-            'transaction_date' => 'required|date',
+            'transaction_date' => 'date',
             'sending_time' => 'date_format:H:i:s',
             'reception_time' => 'date_format:H:i:s',
+            'receiver_comments'=> 'string',
+            'sender_comments'=> 'string',
             'status'=>"string|max:255"
         ]);
 
         $transaction = Transaction::create($request->all());
+        
         return response()->json($transaction, 201);
     }
 

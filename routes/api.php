@@ -5,6 +5,7 @@ use App\Http\Controllers\API\HospitalController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BloodInventoryController;
 use App\Http\Controllers\API\TransactionController;
+use App\Http\Controllers\API\DetailTransactionController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -28,5 +29,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Transactions
     Route::apiResource('transactions', TransactionController::class);
+
+    //DetailTransactions
+    Route::apiResource('detail_transactions', DetailTransactionController::class);
     
 });

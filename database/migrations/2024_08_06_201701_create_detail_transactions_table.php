@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('detail_transactions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("transaction_id");
+            $table->unsignedBigInteger("blood_type_id");
+            $table->unsignedBigInteger("blood_quantity");
             $table->timestamps();
+
+            $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
+            $table->foreign('blood_type_id')->references('id')->on('blood_types')->onDelete('cascade');
         });
     }
 
